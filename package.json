@@ -1,0 +1,93 @@
+{
+	"name": "helloworld",
+	"displayName": "helloworld",
+	"description": "描述",
+	"version": "0.0.1",
+	"publisher":"发布者名称",
+	"engines": {
+		"vscode": "^1.40.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.helloWorld",
+		"onCommand:extension.showcurrenttime",
+		"onLanguage:json",
+		"onLanguage:typescript"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration":{
+			"type":"object",
+			"title": "vscode-trying_set",
+			"properties": {
+				"helloworld.yourname":{
+					"type":"string",
+					"default":"guest",
+					"description": "你的名字"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "extension.helloWorld",
+				"title": "hello world command"
+			},
+			{
+				"command": "extension.showerror",
+				"title": "showerror"
+			},
+			{
+				"command": "extension.getCurrentFilePath",
+				"title": "插件显示当前文件路径"
+			}
+		],
+		"keybindings":[
+			{
+			"command": "extension.helloWorld",
+			"key": "ctrl+f10",
+			"mac":"cmd+f6",
+			"when": "editorTextFocus"
+		}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "extension.helloWorld",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "extension.getCurrentFilePath",
+					"group": "navigation"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "extension.getCurrentFilePath",
+					"group":"navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.40.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"typescript": "^3.6.4",
+		"tslint": "^5.20.0",
+		"vscode-test": "^1.2.2"
+	}
+}
